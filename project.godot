@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Reptaile Adventure"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://GameplayTest.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=60
 
 [display]
 

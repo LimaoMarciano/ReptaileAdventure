@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var motion : Vector2= Vector2()
-var gravity : float = 10
+var gravity : float = 300
 var acceleration : float = 100
 var drag : float = 100
 var braking : float = 150
@@ -23,8 +23,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	
 	
 	if Input.is_action_pressed("left"):
 		if motion.x >= -max_speed:
@@ -53,22 +51,17 @@ func _process(delta):
 		elif motion.x < halt_speed:
 			motion.x += drag * delta
 	
-	print_debug(motion)
-	
-	
-	
 	if is_on_floor():
 		motion.y = 0
 		if Input.is_action_just_pressed("jump"):
 			motion.y = -jump_speed
 	else:
-		
 		if motion.y > 0:
 			$AnimationPlayer.play("Jump_falling")
 		else:
 			$AnimationPlayer.play("Jump_rising")
 	
-	motion.y += gravity
+	motion.y += gravity * delta
 	
 	move_and_slide(motion, floor_up)
 	pass
